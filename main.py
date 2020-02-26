@@ -25,7 +25,7 @@ uClient = uReq(myurl)
 page_html = uClient.read()
 uClient.close()
 
-#html parser
+#html parserTYmVs5iYk3T7kh
 page_soup = soup(page_html, "html.parser")
 
 #grabs each article
@@ -42,7 +42,9 @@ for article in articles:
     description = article.find("div", {"class":"buyBlock description"}).p.get_text()
     description = description.replace("\n", "").replace("\r", "")
     link = article.find("div", {"class":"buyBlock button"}).div.find("a", {"class":"cartLink"}).get("href")
-    article_list.append((model, color, regular_price, reduced_price))
+    if model != "":
+        article_list.append((model, color, regular_price, reduced_price, description))
+
 
 #list of already found articles (csv)
 found_list = []
@@ -53,7 +55,7 @@ b = open(filename_buffer, "r+")
 article_csv = csv.reader(b, delimiter=';')
 
 for item in article_csv:
-        found_list.append((item[0], item[1], item[2], item[3]))
+        found_list.append((item[0], item[1], item[2], item[3], item[4]))
 
 b.close()
 
@@ -76,10 +78,10 @@ for article in article_list:
         if use_notification == 1:
             send_push_message(user_token, app_token, "New Tent found!", article)
         elif use_notification == 2:
-            telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found: " + article)
+            telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found => " + article)
         elif use_notification == 3:
             send_push_message(user_token, app_token, "New Tent found!", article)
-            telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found: " + article)
+            telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found => " + article)
         elif use_notification == 4:
             continue
 
@@ -89,6 +91,6 @@ for item in found_list:
 
 #add items to csv
 for item in add_list:
-    b.write(item[0] + ";" + item[1] + ";" + item[2] + ";" + item[3] + "\n")
+    b.write(item[0] + ";" + item[1] + ";" + item[2] + ";" + item[3] + ";" + item[4] + "\n")
 
 b.close()
