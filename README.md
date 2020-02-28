@@ -3,7 +3,7 @@ A scraper for the B-Ware Sale of the tent manufacturer Hilleberg.
 This program is based on the wg_gesucht repository and compare the already existing items with new ones and notify via telegram or pushover (or both/none).
 
 ## Before use ##
-Define your preferred way of notification in the config.txt file under use_notification and set your pushover user-token & app-token or your telegram bot-token & bot-chatID before use or there will be no notification. Also check the URL and change if needed (main.py).
+Define your preferred way of notification in the config.txt file under use_notification and set your pushover user-token & app-token or your telegram bot-token & bot-chatID before use or there will be no notification. Also check the Filter Option and change it if needed (main.py).
 
 
 **config.txt**
@@ -11,9 +11,9 @@ Define your preferred way of notification in the config.txt file under use_notif
 ![config](https://user-images.githubusercontent.com/55713049/71785761-c36da780-3003-11ea-99b2-eeb8a87aed50.png)
 
 
-**URL (main.py)**
+**URL & Filter (main.py)**
 
-![url](https://user-images.githubusercontent.com/55713049/71785790-22332100-3004-11ea-82ed-b13ead70419b.png)
+![url_searchitems](https://user-images.githubusercontent.com/55713049/75551788-3b20e700-5a35-11ea-8239-1b34b516ab0a.jpg)
 
 
 **ATTENTION** 
