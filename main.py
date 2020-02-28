@@ -86,8 +86,7 @@ for article in article_list:
                 send_push_message(user_token, app_token, "New Tent found!", article)
                 telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found => " + article)
             elif use_notification == 4:
-                print("Yes")
-                #continue
+                continue
 
         for item in search_items:
             if item in article[0]:
@@ -100,8 +99,7 @@ for article in article_list:
                     send_push_message(user_token, app_token, "New Tent found!", article)
                     telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found => " + article)
                 elif use_notification == 4:
-                    print("No")
-                    #continue
+                    continue
 
 
 
