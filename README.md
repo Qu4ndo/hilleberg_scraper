@@ -47,4 +47,4 @@ And insert following crontab statement:
 **Things to know**
 
 If you are interesting in changing the code take a look into the sample.html file.
-It shows you a small overview of the use html dataset.
+It shows you a small overview of the used html dataset.
