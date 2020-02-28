@@ -5,9 +5,11 @@ import csv
 from push import send_push_message
 from telegram import telegram_bot_sendtext
 
-#CHANGE THIS URL!
+#CHANGE THIS URL if needed
 myurl = "https://hilleberg.com/deu/zelt/outlet-zelt"
 
+#CHANGE THIS for a specific search ELSE keep it as empty
+search_items = ["Allak", "Akto", "Enan"]
 
 #read the config.txt
 config = configparser.ConfigParser()
@@ -74,16 +76,34 @@ for article in article_list:
         print(article)
         add_list.append(article)
 
-        article = "Model: " + article[0] + " - " + article[1] + " / " + article[2] + " - " + article[3]
-        if use_notification == 1:
-            send_push_message(user_token, app_token, "New Tent found!", article)
-        elif use_notification == 2:
-            telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found => " + article)
-        elif use_notification == 3:
-            send_push_message(user_token, app_token, "New Tent found!", article)
-            telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found => " + article)
-        elif use_notification == 4:
-            continue
+        if len(search_items) == 0:
+            article = "Model: " + article[0] + " - " + article[1] + " / " + article[2] + " - " + article[3]
+            if use_notification == 1:
+                send_push_message(user_token, app_token, "New Tent found!", article)
+            elif use_notification == 2:
+                telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found => " + article)
+            elif use_notification == 3:
+                send_push_message(user_token, app_token, "New Tent found!", article)
+                telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found => " + article)
+            elif use_notification == 4:
+                print("Yes")
+                #continue
+
+        for item in search_items:
+            if item in article[0]:
+                article = "Model: " + article[0] + " - " + article[1] + " / " + article[2] + " - " + article[3]
+                if use_notification == 1:
+                    send_push_message(user_token, app_token, "New Tent found!", article)
+                elif use_notification == 2:
+                    telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found => " + article)
+                elif use_notification == 3:
+                    send_push_message(user_token, app_token, "New Tent found!", article)
+                    telegram_bot_sendtext(bot_token, bot_chatID, "New Tent found => " + article)
+                elif use_notification == 4:
+                    print("No")
+                    #continue
+
+
 
 #add already found articles to add_list
 for item in found_list:
